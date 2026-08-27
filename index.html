@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pallab Mukherjee — Business Analyst · AI Systems Builder</title>
-<meta name="description" content="Portfolio of Pallab Mukherjee — Senior Business Analyst and AI systems builder based in Kolkata, India.">
+<meta name="description" content="Pallab Mukherjee turns messy enterprise data into decisions people act on — 8+ years in BI at Infosys BPM, now building the AI agents that do the reporting for him. Based in Kolkata, India.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -246,6 +246,10 @@
   .about-text h3{ font-size:24px; font-weight:800; margin:0 0 14px; letter-spacing:-.01em; }
   .about-text p{ color:var(--ink-soft); font-size:15.5px; line-height:1.75; margin:0 0 14px; }
   .about-text p:last-child{ margin-bottom:0; }
+  .about-quote{
+    font-style:italic; color:var(--ink); font-weight:600; font-size:15.5px;
+    padding-left:16px; border-left:2.5px solid var(--accent); line-height:1.6;
+  }
 
   .stats-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:28px; }
   .stat-card{ padding:22px 18px; text-align:center; }
@@ -318,29 +322,6 @@
   .pill:hover{ transform:translateY(-2px); background:rgba(255,255,255,.65); }
   html[data-theme="dark"] .pill:hover{ background:rgba(255,255,255,.14); }
 
-  /* ---------- LinkedIn feed ---------- */
-  .li-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .li-card{
-    padding:24px 24px; display:flex; flex-direction:column; gap:12px; text-decoration:none;
-    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
-  }
-  .li-card.li-link:hover{ transform:translateY(-5px); box-shadow:0 20px 40px rgba(31,38,68,.2); }
-  .li-top-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-  .li-date{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-faint); }
-  .li-badge{
-    width:28px; height:28px; border-radius:8px; display:grid; place-items:center; flex-shrink:0;
-    background:linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-  .li-badge svg{ width:14px; height:14px; stroke:#fff; }
-  .li-text{ font-size:14.2px; color:var(--ink-soft); line-height:1.6; margin:0; }
-  .li-stats{ display:flex; gap:14px; font-size:12.5px; color:var(--ink-faint); margin-top:auto; padding-top:6px; }
-  .li-stats span{ display:inline-flex; align-items:center; gap:5px; }
-  .li-note{ text-align:center; font-size:13px; color:var(--ink-faint); margin-top:20px; }
-  .li-skeleton{ pointer-events:none; }
-  .li-skel-line{ height:12px; border-radius:6px; background:rgba(255,255,255,0.35); animation:liPulse 1.4s ease-in-out infinite; }
-  html[data-theme="dark"] .li-skel-line{ background:rgba(255,255,255,0.08); }
-  @keyframes liPulse{ 0%,100%{ opacity:.5;} 50%{ opacity:1;} }
-
   /* ---------- Contact ---------- */
   .contact-grid{ display:grid; grid-template-columns:1fr 1.2fr; gap:24px; }
   .contact-card{ padding:32px; }
@@ -382,7 +363,6 @@
     .stats-row{ grid-template-columns:repeat(2,1fr); }
     .projects-grid{ grid-template-columns:1fr; }
     .skills-grid{ grid-template-columns:1fr; }
-    .li-grid{ grid-template-columns:1fr; }
     .contact-grid{ grid-template-columns:1fr; }
     .brand span.brand-text{ display:none; }
   }
@@ -423,7 +403,7 @@
     <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
     </button>
-    <a id="resumeDownload" class="btn btn-primary btn-sm" download="Pallab_Mukherjee_Resume.docx">
+    <a id="resumeDownload" class="btn btn-primary btn-sm" download="Pallab_Mukherjee_Resume.pdf">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-4-4m4 4l4-4M4 20h16"></path></svg>
       Résumé
     </a>
@@ -436,7 +416,7 @@
     <span class="status-dot"></span> Kolkata, India · Open to new opportunities
   </div>
   <h1 class="reveal visible">
-    I turn <span class="grad">complex data</span><br> into clear decisions.
+    I turn <span class="grad">messy data</span><br> into moments people act on.
   </h1>
   <p class="hero-role">
     <span>Senior Business Analyst,</span>
@@ -448,7 +428,7 @@
   </p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary"><span class="long">Get in touch</span><span class="short" style="display:none">Contact</span></a>
-    <a id="resumeDownload2" class="btn btn-ghost glass" download="Pallab_Mukherjee_Resume.docx">Download résumé</a>
+    <a id="resumeDownload2" class="btn btn-ghost glass" download="Pallab_Mukherjee_Resume.pdf">Download résumé</a>
     <a href="https://www.linkedin.com/in/pallab-mukherjee" target="_blank" rel="noopener" class="btn btn-ghost glass">LinkedIn ↗</a>
   </div>
   <div class="scroll-cue">
@@ -464,7 +444,7 @@
       <div class="section-head reveal">
         <div class="eyebrow">About</div>
         <h2 class="section-title">Analyst by trade, builder by instinct.</h2>
-        <p class="section-sub">Seven-plus years turning messy datasets into decisions the C-suite can act on — and lately, turning that same instinct toward building the AI tools that make analysts faster.</p>
+        <p class="section-sub">Eight-plus years spent making messy datasets tell the truth clearly enough for the C-suite to act on it — and lately, teaching that same instinct to a set of AI agents so the answer arrives before anyone has to ask.</p>
       </div>
 
       <div class="about-grid glass reveal">
@@ -476,13 +456,14 @@
         </div>
         <div class="about-text">
           <h3>Hi, I'm Pallab.</h3>
-          <p>I'm a Senior Business Analyst at Infosys BPM, where I lead BI reporting, data modeling, and dashboard delivery for enterprise clients — Power BI, Tableau, and SQL Server are my daily tools. But the work I'm proudest of recently sits a layer deeper: I designed and shipped a multi-agent SQL assistant that lets business users query data through plain chat input instead of writing SQL themselves, freeing up the equivalent of 3.2 full-time analysts.</p>
-          <p>That project pulled me firmly into AI systems — prompt engineering, agent orchestration, and automating the boring parts of analytics so people can focus on the decisions that matter. Based in Kolkata, India.</p>
+          <p>I started out doing the part of analytics nobody enjoys: chasing down mismatched numbers across spreadsheets, rebuilding the same report every Monday, waiting on someone else to run a query so I could answer a simple question. Eight-plus years and a few hundred dashboards later, I lead BI reporting, data modeling, and delivery for enterprise clients at Infosys BPM — Power BI, Tableau, and SQL Server are still my daily tools.</p>
+          <p>The work I'm proudest of, though, is the one that got rid of the waiting. I designed and shipped a multi-agent SQL assistant that lets business users just ask for what they need in plain language — no query-writing, no ticket in a queue — and it plans and runs the SQL behind the scenes. It's currently doing the work of 3.2 full-time analysts, and it's what pulled me firmly into building AI systems rather than just reporting on them.</p>
+          <p class="about-quote">"The best dashboard is the one nobody has to ask for — it's already answered the question."</p>
         </div>
       </div>
 
       <div class="stats-row">
-        <div class="stat-card glass reveal"><div class="stat-num">7+</div><div class="stat-label">Years in BI &amp; Analytics</div></div>
+        <div class="stat-card glass reveal"><div class="stat-num">8+</div><div class="stat-label">Years in BI &amp; Analytics</div></div>
         <div class="stat-card glass reveal"><div class="stat-num">3.2</div><div class="stat-label">FTEs saved by AI assistant</div></div>
         <div class="stat-card glass reveal"><div class="stat-num">20+</div><div class="stat-label">Dashboards shipped</div></div>
         <div class="stat-card glass reveal"><div class="stat-num">5</div><div class="stat-label">Analysts led</div></div>
@@ -495,8 +476,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Experience</div>
-        <h2 class="section-title">Career highlights.</h2>
-        <p class="section-sub">A condensed timeline — full role history and details are in the résumé.</p>
+        <h2 class="section-title">Eight years, one throughline.</h2>
+        <p class="section-sub">Every role added a layer — from cleaning data by hand, to leading the team that reports it, to building the agents that now do the reporting. Full history is in the résumé.</p>
       </div>
 
       <div class="timeline">
@@ -505,7 +486,7 @@
           <div class="tl-card glass">
             <div class="tl-top"><span class="tl-role">Senior Analyst</span><span class="tl-date mono">Apr 2024 — Present</span></div>
             <div class="tl-company">Infosys BPM Limited · Bangalore, India</div>
-            <p class="tl-desc">Leading a team of five analysts, delivering enterprise BI solutions, and building the multi-agent SQL assistant that saved 3.2 FTEs of manual reporting work. Grew stakeholder engagement 30% across 20+ dashboards.</p>
+            <p class="tl-desc">Took over a team of five analysts drowning in ad-hoc report requests, then designed the multi-agent SQL assistant that made most of those requests disappear — saving 3.2 FTEs of manual work and lifting stakeholder engagement 30% across 20+ dashboards.</p>
           </div>
         </div>
         <div class="tl-item reveal">
@@ -513,7 +494,7 @@
           <div class="tl-card glass">
             <div class="tl-top"><span class="tl-role">Analyst</span><span class="tl-date mono">Apr 2022 — Mar 2024</span></div>
             <div class="tl-company">Infosys BPM Limited · Bangalore, India</div>
-            <p class="tl-desc">Owned BI reporting for the AT&amp;T Invoicing Project, optimized SQL performance, and delivered cross-functional data models and technical documentation.</p>
+            <p class="tl-desc">Owned BI reporting for the AT&amp;T Invoicing Project end to end — untangled slow SQL into queries that ran in a fraction of the time, and built the data models and documentation other teams still reference today.</p>
           </div>
         </div>
         <div class="tl-item reveal">
@@ -521,7 +502,7 @@
           <div class="tl-card glass">
             <div class="tl-top"><span class="tl-role">Associate Analyst</span><span class="tl-date mono">Apr 2020 — Mar 2022</span></div>
             <div class="tl-company">Infosys BPM Limited · Bangalore, India</div>
-            <p class="tl-desc">Built dashboards and automated reporting in Excel/VBA, Tableau, and Power BI; developed predictive models and mentored junior analysts across UK &amp; US teams.</p>
+            <p class="tl-desc">Replaced hours of manual spreadsheet work with automated reporting in Excel/VBA, Tableau, and Power BI; built early predictive models and mentored junior analysts across UK &amp; US teams.</p>
           </div>
         </div>
         <div class="tl-item reveal">
@@ -529,7 +510,7 @@
           <div class="tl-card glass">
             <div class="tl-top"><span class="tl-role">Senior Process Executive</span><span class="tl-date mono">Feb 2018 — Mar 2020</span></div>
             <div class="tl-company">Infosys BPM Limited · Hyderabad, India</div>
-            <p class="tl-desc">Ensured data quality across GIS attribute review, applied ML models to optimize bot review workflows, and supported internal BI tooling.</p>
+            <p class="tl-desc">Started here, checking GIS attribute data by hand for quality — then applied ML models to optimize the bot review workflows that made that same checking faster for everyone else.</p>
           </div>
         </div>
       </div>
@@ -541,8 +522,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Featured Work</div>
-        <h2 class="section-title">Projects that shipped impact.</h2>
-        <p class="section-sub">A few of the systems I've designed and built to make analytics faster and more autonomous.</p>
+        <h2 class="section-title">Three problems I got tired of solving by hand.</h2>
+        <p class="section-sub">Each of these started as a recurring annoyance — a report I kept rebuilding, a dashboard I kept rewiring, a post I kept forgetting to write. So I automated myself out of the job.</p>
       </div>
 
       <div class="projects-grid">
@@ -550,7 +531,7 @@
           <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 4 4 4M16 9l4 4-4 4M14 4l-4 16"></path></svg></div>
           <h3>Multi-Agent SQL Assistant</h3>
           <div class="project-metric">↳ Saved 3.2 FTEs of manual reporting</div>
-          <p>A chat-first assistant that lets business users describe what they need in plain language, then autonomously plans and executes the SQL queries behind the scenes — no query-writing required.</p>
+          <p>Business users kept lining up outside my team's queue for one-off numbers. So I built a chat-first assistant that lets them just ask, in plain language — it plans and runs the SQL behind the scenes, and the queue emptied out.</p>
           <div class="tag-row">
             <span class="tag">Multi-Agent AI</span><span class="tag">SQL Server</span><span class="tag">Prompt Engineering</span>
           </div>
@@ -560,7 +541,7 @@
           <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg></div>
           <h3>Power BI Dashboard Agent</h3>
           <div class="project-metric">↳ Generates dashboards from a JSON spec</div>
-          <p>A Python agent that programmatically builds Power BI dashboards via the REST API, authenticating through Azure AD/MSAL and turning structured specs into ready-to-use reports.</p>
+          <p>Every new dashboard request meant starting from a blank canvas and rebuilding the same visuals by hand. Now a Python agent reads a structured spec and builds the whole report through the Power BI REST API, authenticated via Azure AD/MSAL — blank canvas, solved.</p>
           <div class="tag-row">
             <span class="tag">Power BI REST API</span><span class="tag">Python</span><span class="tag">Azure AD · MSAL</span>
           </div>
@@ -570,7 +551,7 @@
           <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 8h20M7 14h4"></path></svg></div>
           <h3>LinkedIn Content Pipeline</h3>
           <div class="project-metric">↳ Zero manual intervention</div>
-          <p>A fully automated content creation and posting pipeline that plans, writes, and publishes LinkedIn content end-to-end, connecting Make.com, the Claude API, and the LinkedIn Developer API.</p>
+          <p>I kept meaning to post more and kept not doing it. So I connected Make.com, the Claude API, and the LinkedIn Developer API into a pipeline that plans, writes, and publishes on its own — including the posts feeding the section below.</p>
           <div class="tag-row">
             <span class="tag">Make.com</span><span class="tag">Claude API</span><span class="tag">Automation</span>
           </div>
@@ -584,7 +565,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Toolkit</div>
-        <h2 class="section-title">Skills &amp; tools.</h2>
+        <h2 class="section-title">What's in reach when I sit down to build.</h2>
+        <p class="section-sub">The BI side keeps me honest about what stakeholders actually need; the AI side is where I've been spending most of my curiosity lately.</p>
       </div>
 
       <div class="skills-grid">
@@ -607,35 +589,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- LinkedIn -->
-  <section class="section" id="linkedin">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">Latest Activity</div>
-        <h2 class="section-title">Recent posts from LinkedIn.</h2>
-        <p class="section-sub">Auto-synced from my LinkedIn feed — thoughts on BI, AI systems, and analytics as I ship them.</p>
-      </div>
-      <div class="li-grid" id="liGrid">
-        <div class="li-card glass reveal li-skeleton">
-          <div class="li-skel-line" style="width:40%"></div>
-          <div class="li-skel-line" style="width:95%"></div>
-          <div class="li-skel-line" style="width:80%"></div>
-        </div>
-        <div class="li-card glass reveal li-skeleton">
-          <div class="li-skel-line" style="width:35%"></div>
-          <div class="li-skel-line" style="width:90%"></div>
-          <div class="li-skel-line" style="width:70%"></div>
-        </div>
-        <div class="li-card glass reveal li-skeleton">
-          <div class="li-skel-line" style="width:45%"></div>
-          <div class="li-skel-line" style="width:92%"></div>
-          <div class="li-skel-line" style="width:60%"></div>
-        </div>
-      </div>
-      <p class="li-note" id="liNote">Loading latest posts…</p>
     </div>
   </section>
 
@@ -696,7 +649,6 @@
   <a href="#experience" class="dock-item" data-section="experience"><span class="dock-tooltip">Experience</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span class="dot"></span></a>
   <a href="#projects" class="dock-item" data-section="projects"><span class="dock-tooltip">Projects</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"></path><path d="M3 12l9 5 9-5M3 17l9 5 9-5"></path></svg><span class="dot"></span></a>
   <a href="#skills" class="dock-item" data-section="skills"><span class="dock-tooltip">Skills</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1z"></path></svg><span class="dot"></span></a>
-  <a href="#linkedin" class="dock-item" data-section="linkedin"><span class="dock-tooltip">LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg><span class="dot"></span></a>
   <a href="#contact" class="dock-item" data-section="contact"><span class="dock-tooltip">Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 6 10-6"></path></svg><span class="dot"></span></a>
 </nav>
 
@@ -726,7 +678,7 @@ themeToggle.addEventListener('click', () => {
 
 // ---------- Resume download (data URI) ----------
 if (window.RESUME_BASE64) {
-  const href = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,' + window.RESUME_BASE64;
+  const href = 'data:application/pdf;base64,' + window.RESUME_BASE64;
   document.getElementById('resumeDownload').href = href;
   document.getElementById('resumeDownload2').href = href;
 }
@@ -800,85 +752,6 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
   const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
   window.location.href = `mailto:pallab.mukherjee1987@gmail.com?subject=${subject}&body=${body}`;
 });
-
-// ---------- LinkedIn feed ----------
-// Reads linkedin_posts.json, a small file this repo expects the Make.com
-// LinkedIn Content Pipeline to write to on every publish (see README/notes for
-// the exact scenario step). Shape:
-// { "updated": "2026-08-20T10:00:00Z", "posts": [ { "text": "...", "url": "https://linkedin.com/...", "date": "2026-08-20", "likes": 42, "comments": 3 } ] }
-(function initLinkedInFeed(){
-  const grid = document.getElementById('liGrid');
-  const note = document.getElementById('liNote');
-  if (!grid) return;
-
-  const linkedinIconSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>';
-
-  function escapeHtml(str){
-    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  function formatDate(iso){
-    try{
-      return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-    }catch(e){ return iso || ''; }
-  }
-
-  function truncate(text, max){
-    if (!text) return '';
-    return text.length > max ? text.slice(0, max).trim() + '…' : text;
-  }
-
-  function renderPosts(posts){
-    grid.innerHTML = '';
-    posts.slice(0, 6).forEach(post => {
-      const card = document.createElement('a');
-      card.className = 'li-card li-link glass reveal';
-      card.href = post.url || 'https://www.linkedin.com/in/pallab-mukherjee';
-      card.target = '_blank';
-      card.rel = 'noopener';
-      const statsHtml = [
-        (post.likes != null) ? `<span>👍 ${post.likes}</span>` : '',
-        (post.comments != null) ? `<span>💬 ${post.comments}</span>` : ''
-      ].filter(Boolean).join('');
-      card.innerHTML = `
-        <div class="li-top-row">
-          <div class="li-badge">${linkedinIconSVG}</div>
-          <span class="li-date mono">${formatDate(post.date)}</span>
-        </div>
-        <p class="li-text">${escapeHtml(truncate(post.text, 220))}</p>
-        ${statsHtml ? `<div class="li-stats">${statsHtml}</div>` : ''}
-      `;
-      grid.appendChild(card);
-      io.observe(card);
-    });
-  }
-
-  function showFallback(message){
-    grid.innerHTML = `
-      <a class="li-card glass reveal" href="https://www.linkedin.com/in/pallab-mukherjee" target="_blank" rel="noopener" style="grid-column:1/-1; align-items:center; text-align:center;">
-        <div class="li-badge" style="margin:0 auto;">${linkedinIconSVG}</div>
-        <p class="li-text">${message}</p>
-      </a>`;
-    grid.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  }
-
-  fetch('linkedin_posts.json', { cache: 'no-store' })
-    .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
-    .then(data => {
-      const posts = Array.isArray(data) ? data : (data.posts || []);
-      if (!posts.length) {
-        showFallback('No posts synced yet — check back soon, or visit the profile directly.');
-        note.textContent = '';
-        return;
-      }
-      renderPosts(posts);
-      note.textContent = data.updated ? `Last synced ${formatDate(data.updated)} · view all posts on LinkedIn ↗` : '';
-    })
-    .catch(() => {
-      showFallback('Latest posts will appear here once the LinkedIn sync is connected.');
-      note.textContent = '';
-    });
-})();
 
 // ---------- Topbar shadow on scroll ----------
 const topbar = document.querySelector('.topbar');
