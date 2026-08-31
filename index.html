@@ -299,6 +299,9 @@
   .project-card h3{ font-size:18.5px; font-weight:750; margin:0; letter-spacing:-.01em; }
   .project-metric{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--coral); font-weight:600; }
   .project-card p{ font-size:14.2px; color:var(--ink-soft); line-height:1.65; margin:0; flex-grow:1; }
+  .project-card{ cursor:pointer; }
+  .case-study-btn{ align-self:flex-start; padding:0; border:0; background:none; color:var(--accent); font:600 13px 'Inter',sans-serif; cursor:pointer; }
+  .case-study-btn:hover{ text-decoration:underline; }
   .tag-row{ display:flex; flex-wrap:wrap; gap:7px; margin-top:4px; }
   .tag{
     font-family:'JetBrains Mono',monospace; font-size:11px; padding:5px 10px; border-radius:999px;
@@ -321,6 +324,40 @@
   html[data-theme="dark"] .pill{ background:rgba(255,255,255,0.06); }
   .pill:hover{ transform:translateY(-2px); background:rgba(255,255,255,.65); }
   html[data-theme="dark"] .pill:hover{ background:rgba(255,255,255,.14); }
+
+  /* ---------- Credentials ---------- */
+  .creds-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .cred-card{ padding:24px 26px; }
+  .cred-type{
+    font-size:11.5px; color:var(--accent); text-transform:uppercase; letter-spacing:.1em; font-weight:700; margin-bottom:6px;
+  }
+  .cred-title{ font-size:16px; font-weight:700; margin:0 0 4px; }
+  .cred-source{ font-size:13.5px; color:var(--ink-soft); margin:0 0 8px; }
+  .cred-note{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+  /* ---------- Recruiter proof ---------- */
+  .impact-strip{ width:min(920px,100%); display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:28px auto 0; }
+  .impact-item{ padding:12px 14px; text-align:left; border-radius:16px; }
+  .impact-num{ display:block; color:var(--accent); font:700 17px 'JetBrains Mono',monospace; }
+  .impact-label{ display:block; color:var(--ink-soft); font-size:11.5px; line-height:1.35; margin-top:3px; }
+  .focus-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .focus-card{ padding:25px; }
+  .focus-card h3{ font-size:16px; margin:0 0 8px; }
+  .focus-card p{ margin:0; color:var(--ink-soft); font-size:14px; line-height:1.6; }
+
+  /* ---------- Case-study dialog ---------- */
+  .case-dialog{ width:min(760px,calc(100% - 32px)); border:0; padding:0; background:transparent; color:var(--ink); }
+  .case-dialog::backdrop{ background:rgba(9,12,25,.52); backdrop-filter:blur(6px); }
+  .case-modal{ max-height:min(78vh,720px); overflow:auto; padding:34px; }
+  .case-close{ position:absolute; top:15px; right:15px; width:36px; height:36px; border:1px solid var(--glass-border); border-radius:50%; background:var(--glass-strong); color:var(--ink); cursor:pointer; font-size:20px; line-height:1; }
+  .case-kicker{ font:600 11px 'JetBrains Mono',monospace; color:var(--accent); letter-spacing:.12em; text-transform:uppercase; }
+  .case-modal h2{ margin:8px 0 10px; font-size:30px; letter-spacing:-.02em; }
+  .case-lead{ color:var(--ink-soft); line-height:1.7; margin:0 0 24px; }
+  .case-facts{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 22px; }
+  .case-fact{ padding:14px; border-radius:14px; background:rgba(255,255,255,.3); border:1px solid var(--glass-border); }
+  .case-fact b{ display:block; font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+  .case-fact span{ font-size:13px; line-height:1.45; }
+  .case-list{ margin:0; padding-left:19px; color:var(--ink-soft); line-height:1.7; font-size:14px; }
 
   /* ---------- Contact ---------- */
   .contact-grid{ display:grid; grid-template-columns:1fr 1.2fr; gap:24px; }
@@ -363,7 +400,9 @@
     .stats-row{ grid-template-columns:repeat(2,1fr); }
     .projects-grid{ grid-template-columns:1fr; }
     .skills-grid{ grid-template-columns:1fr; }
+    .creds-grid{ grid-template-columns:1fr; }
     .contact-grid{ grid-template-columns:1fr; }
+    .focus-grid{ grid-template-columns:1fr; }
     .brand span.brand-text{ display:none; }
   }
   @media (max-width:560px){
@@ -371,6 +410,10 @@
     .stats-row{ grid-template-columns:repeat(2,1fr); }
     .dock-wrap{ gap:6px; padding:8px 10px; width:calc(100% - 24px); justify-content:space-between; }
     .dock-item{ width:40px; height:40px; }
+    .impact-strip{ grid-template-columns:repeat(2,1fr); margin-top:22px; }
+    .impact-item{ padding:10px 12px; }
+    .case-facts{ grid-template-columns:1fr; }
+    .case-modal{ padding:28px 22px; }
     .hero-cta .btn span.long{ display:none; }
     .hero-cta .btn span.short{ display:inline !important; }
   }
@@ -419,17 +462,25 @@
     I turn <span class="grad">messy data</span><br> into moments people act on.
   </h1>
   <p class="hero-role">
-    <span>Senior Business Analyst,</span>
+    <span>Senior BI &amp; Analytics Leader,</span>
     <span class="role-cycle" id="roleCycle">
-      <span class="show">building AI systems.</span>
-      <span>designing BI dashboards.</span>
-      <span>automating the boring parts.</span>
+    <span class="show">building AI systems.</span>
+    <span>designing BI dashboards.</span>
+    <span>automating the boring parts.</span>
+    <span>advising the C-suite.</span>
+    <span>mentoring analysts.</span>
     </span>
   </p>
   <div class="hero-cta">
     <a href="#contact" class="btn btn-primary"><span class="long">Get in touch</span><span class="short" style="display:none">Contact</span></a>
     <a id="resumeDownload2" class="btn btn-ghost glass" download="Pallab_Mukherjee_Resume.pdf">Download résumé</a>
     <a href="https://www.linkedin.com/in/pallab-mukherjee" target="_blank" rel="noopener" class="btn btn-ghost glass">LinkedIn ↗</a>
+  </div>
+  <div class="impact-strip reveal" aria-label="Career impact at a glance">
+    <div class="impact-item glass"><span class="impact-num">3.2 FTE</span><span class="impact-label">manual reporting capacity released</span></div>
+    <div class="impact-item glass"><span class="impact-num">20+</span><span class="impact-label">enterprise dashboards delivered</span></div>
+    <div class="impact-item glass"><span class="impact-num">95%</span><span class="impact-label">on-time project delivery</span></div>
+    <div class="impact-item glass"><span class="impact-num">+15%</span><span class="impact-label">quarterly revenue uplift</span></div>
   </div>
   <div class="scroll-cue">
     Scroll
@@ -444,7 +495,7 @@
       <div class="section-head reveal">
         <div class="eyebrow">About</div>
         <h2 class="section-title">Analyst by trade, builder by instinct.</h2>
-        <p class="section-sub">Eight-plus years spent making messy datasets tell the truth clearly enough for the C-suite to act on it — and lately, teaching that same instinct to a set of AI agents so the answer arrives before anyone has to ask.</p>
+        <p class="section-sub">I turn fragmented enterprise data into trusted decisions — then redesign the work so the next answer arrives faster, safely, and with less manual effort.</p>
       </div>
 
       <div class="about-grid glass reveal">
@@ -457,7 +508,8 @@
         <div class="about-text">
           <h3>Hi, I'm Pallab.</h3>
           <p>I started out doing the part of analytics nobody enjoys: chasing down mismatched numbers across spreadsheets, rebuilding the same report every Monday, waiting on someone else to run a query so I could answer a simple question. Eight-plus years and a few hundred dashboards later, I lead BI reporting, data modeling, and delivery for enterprise clients at Infosys BPM — Power BI, Tableau, and SQL Server are still my daily tools.</p>
-          <p>The work I'm proudest of, though, is the one that got rid of the waiting. I designed and shipped a multi-agent SQL assistant that lets business users just ask for what they need in plain language — no query-writing, no ticket in a queue — and it plans and runs the SQL behind the scenes. It's currently doing the work of 3.2 full-time analysts, and it's what pulled me firmly into building AI systems rather than just reporting on them.</p>
+          <p>The work I'm proudest of is the one that got rid of the waiting. I designed and shipped a multi-agent SQL assistant that lets business users ask questions in plain language while the system plans and runs governed SQL behind the scenes. It released 3.2 FTEs of reporting capacity — and pulled me firmly into building AI systems, not just reporting on them.</p>
+          <p>Along the way I've advised the C-suite directly — optimizing promotional spend and streamlining operations in ways that moved quarterly revenue up 15% — while leading a team of five, mentoring four BI colleagues, and holding the line on 95% on-time delivery. And before the dashboards, I built websites: I've had a builder's hands since 2015, and I bring that same instinct to every interface, report, and agent I ship.</p>
           <p class="about-quote">"The best dashboard is the one nobody has to ask for — it's already answered the question."</p>
         </div>
       </div>
@@ -465,8 +517,8 @@
       <div class="stats-row">
         <div class="stat-card glass reveal"><div class="stat-num">8+</div><div class="stat-label">Years in BI &amp; Analytics</div></div>
         <div class="stat-card glass reveal"><div class="stat-num">3.2</div><div class="stat-label">FTEs saved by AI assistant</div></div>
-        <div class="stat-card glass reveal"><div class="stat-num">20+</div><div class="stat-label">Dashboards shipped</div></div>
-        <div class="stat-card glass reveal"><div class="stat-num">5</div><div class="stat-label">Analysts led</div></div>
+        <div class="stat-card glass reveal"><div class="stat-num">95%</div><div class="stat-label">On-time project delivery</div></div>
+        <div class="stat-card glass reveal"><div class="stat-num">+15%</div><div class="stat-label">Quarterly revenue lifted</div></div>
       </div>
     </div>
   </section>
@@ -477,7 +529,7 @@
       <div class="section-head reveal">
         <div class="eyebrow">Experience</div>
         <h2 class="section-title">Eight years, one throughline.</h2>
-        <p class="section-sub">Every role added a layer — from cleaning data by hand, to leading the team that reports it, to building the agents that now do the reporting. Full history is in the résumé.</p>
+        <p class="section-sub">Every role added a layer — from cleaning data by hand, to leading the team that reports it, to building the agents that now do the reporting. Full history, including early web-development and teaching years, is in the résumé.</p>
       </div>
 
       <div class="timeline">
@@ -486,7 +538,7 @@
           <div class="tl-card glass">
             <div class="tl-top"><span class="tl-role">Senior Analyst</span><span class="tl-date mono">Apr 2024 — Present</span></div>
             <div class="tl-company">Infosys BPM Limited · Bangalore, India</div>
-            <p class="tl-desc">Took over a team of five analysts drowning in ad-hoc report requests, then designed the multi-agent SQL assistant that made most of those requests disappear — saving 3.2 FTEs of manual work and lifting stakeholder engagement 30% across 20+ dashboards.</p>
+            <p class="tl-desc">Lead a team of five analysts drowning in ad-hoc report requests, then designed the multi-agent SQL assistant that made most of those requests disappear — saving 3.2 FTEs of manual work, lifting stakeholder engagement 30% across 20+ dashboards, and keeping delivery on time 95% of the time via Jira and MS Project.</p>
           </div>
         </div>
         <div class="tl-item reveal">
@@ -522,8 +574,8 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Featured Work</div>
-        <h2 class="section-title">Three problems I got tired of solving by hand.</h2>
-        <p class="section-sub">Each of these started as a recurring annoyance — a report I kept rebuilding, a dashboard I kept rewiring, a post I kept forgetting to write. So I automated myself out of the job.</p>
+        <h2 class="section-title">Problems I got tired of solving by hand.</h2>
+        <p class="section-sub">Each of these started as a recurring annoyance — a report I kept rebuilding, a dashboard I kept rewiring, a query I kept waiting on, a post I kept forgetting to write. So I automated myself out of the job — three of them even shipped to real clients or stakeholders.</p>
       </div>
 
       <div class="projects-grid">
@@ -535,16 +587,18 @@
           <div class="tag-row">
             <span class="tag">Multi-Agent AI</span><span class="tag">SQL Server</span><span class="tag">Prompt Engineering</span>
           </div>
+          <button class="case-study-btn" type="button" data-case="sql">View case study →</button>
         </div>
 
         <div class="project-card glass reveal">
           <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg></div>
           <h3>Power BI Dashboard Agent</h3>
           <div class="project-metric">↳ Generates dashboards from a JSON spec</div>
-          <p>Every new dashboard request meant starting from a blank canvas and rebuilding the same visuals by hand. Now a Python agent reads a structured spec and builds the whole report through the Power BI REST API, authenticated via Azure AD/MSAL — blank canvas, solved.</p>
+          <p>Every dashboard request used to start from a blank canvas and repeat the same delivery steps. I designed a Python automation workflow that reads a structured specification, applies governed templates, and streamlines Power BI report lifecycle tasks through authenticated APIs.</p>
           <div class="tag-row">
             <span class="tag">Power BI REST API</span><span class="tag">Python</span><span class="tag">Azure AD · MSAL</span>
           </div>
+          <button class="case-study-btn" type="button" data-case="dashboard">View case study →</button>
         </div>
 
         <div class="project-card glass reveal">
@@ -556,6 +610,78 @@
             <span class="tag">Make.com</span><span class="tag">Claude API</span><span class="tag">Automation</span>
           </div>
         </div>
+
+        <div class="project-card glass reveal">
+          <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg></div>
+          <h3>SQL Performance Engine</h3>
+          <div class="project-metric">↳ Report runtimes cut to a fraction</div>
+          <p>On the AT&amp;T Invoicing Project, slow queries kept backing up billing reconciliation. I dissected the data-access layer, rewrote the slow SQL into lean, index-friendly queries, and turned fragile spreadsheets into automated reports — shrinking reconciliation turnaround and setting the pattern the team still follows.</p>
+          <div class="tag-row">
+            <span class="tag">SQL Server</span><span class="tag">Query Optimization</span><span class="tag">Data Virtualization</span><span class="tag">ETL</span>
+          </div>
+          <button class="case-study-btn" type="button" data-case="revenue">View case study →</button>
+        </div>
+
+        <div class="project-card glass reveal">
+          <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-6 4 3 5-8"></path><path d="M18 4h3v3"></path></svg></div>
+          <h3>Predictive Business Models</h3>
+          <div class="project-metric">↳ From hindsight to forecast</div>
+          <p>When the analytics work was mostly explaining what already happened, I built early machine-learning models to optimize bot review workflows in GIS and predict outcomes for business optimization — the first taste of moving from describing the past to shaping decisions about what comes next.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">R</span><span class="tag">Machine Learning</span><span class="tag">Predictive Analytics</span>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal">
+          <div class="project-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"></path></svg></div>
+          <h3>Web Development Practice</h3>
+          <div class="project-metric">↳ Websites that shipped to real clients</div>
+          <p>Before the dashboards, I built the web. As a web consultant I designed, developed, and maintained multiple client sites — coordinating layout, links, and multimedia with design teams. It gave me a builder's hands and an eye for clean interfaces I still bring to every dashboard.</p>
+          <div class="tag-row">
+            <span class="tag">HTML · CSS · JS</span><span class="tag">UI Design</span><span class="tag">Client Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="focus-grid" style="margin-top:22px;">
+        <article class="focus-card glass reveal">
+          <h3>Trusted analytics, not black-box automation.</h3>
+          <p>I design AI-assisted analytics around clear business questions, governed access, explainable outputs, and a reliable path for human review.</p>
+        </article>
+        <article class="focus-card glass reveal">
+          <h3>Enterprise delivery discipline.</h3>
+          <p>From requirements workshops to stakeholder demos, I combine Agile delivery, documentation, and team leadership with hands-on technical ownership.</p>
+        </article>
+        <article class="focus-card glass reveal">
+          <h3>Built for decision-makers.</h3>
+          <p>The outcome is never a dashboard alone: it is a faster, defensible decision for finance, operations, or executive leadership.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="section" id="credentials">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Credentials</div>
+        <h2 class="section-title">Proof behind the practice.</h2>
+        <p class="section-sub">A certified data-science practitioner with a liberal-arts foundation — the combination that makes the numbers readable, the decisions defensible, and the communication human.</p>
+      </div>
+
+      <div class="creds-grid">
+        <div class="cred-card glass reveal">
+          <div class="cred-type">Certification</div>
+          <h3 class="cred-title">Certified Professional Data Science Practitioner</h3>
+          <p class="cred-source">Analytics Path, Hyderabad</p>
+          <p class="cred-note">Structured grounding in the full data-science lifecycle — from framing problems and wrangling data to building and communicating models — formalizing the ML work I'd already been shipping.</p>
+        </div>
+        <div class="cred-card glass reveal">
+          <div class="cred-type">Education</div>
+          <h3 class="cred-title">Bachelor of Arts — History</h3>
+          <p class="cred-source">Krishnath College, University of Kalyani</p>
+          <p class="cred-note">A research-and-writing discipline that sharpened the analysis and narrative skills I lean on daily — sourcing claims, weighing evidence, and explaining complex things to people who aren't analysts.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -566,26 +692,56 @@
       <div class="section-head reveal">
         <div class="eyebrow">Toolkit</div>
         <h2 class="section-title">What's in reach when I sit down to build.</h2>
-        <p class="section-sub">The BI side keeps me honest about what stakeholders actually need; the AI side is where I've been spending most of my curiosity lately.</p>
+        <p class="section-sub">The BI side keeps me honest about what stakeholders actually need; the AI side is where I've been spending most of my curiosity lately. Everything below is something I've shipped, not just listed.</p>
       </div>
 
       <div class="skills-grid">
         <div class="skill-group glass reveal">
           <h4>BI &amp; Visualization</h4>
           <div class="pill-row">
-            <span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Qlik Sense</span><span class="pill">DAX</span>
+            <span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Qlik Sense</span><span class="pill">DAX</span><span class="pill">Dashboard Design</span><span class="pill">Data Storytelling</span>
           </div>
         </div>
         <div class="skill-group glass reveal">
           <h4>Data &amp; AI</h4>
           <div class="pill-row">
-            <span class="pill">SQL Server</span><span class="pill">Python</span><span class="pill">R</span><span class="pill">Machine Learning</span><span class="pill">Multi-Agent Systems</span><span class="pill">Prompt Engineering</span>
+            <span class="pill">SQL Server</span><span class="pill">Python</span><span class="pill">R</span><span class="pill">Machine Learning</span><span class="pill">Predictive Analytics</span><span class="pill">Multi-Agent Systems</span><span class="pill">LLM Integration</span><span class="pill">Prompt Engineering</span><span class="pill">RAG / AI Agents</span>
           </div>
         </div>
         <div class="skill-group glass reveal">
-          <h4>Delivery</h4>
+          <h4>ETL &amp; Data Modeling</h4>
           <div class="pill-row">
-            <span class="pill">Agile / Scrum</span><span class="pill">Jira</span><span class="pill">MS Project</span><span class="pill">Stakeholder Reporting</span>
+            <span class="pill">Dimensional Modeling</span><span class="pill">ETL Pipelines</span><span class="pill">Query Optimization</span><span class="pill">Data Virtualization</span><span class="pill">Power BI REST API</span><span class="pill">Excel / VBA</span><span class="pill">Data Quality</span><span class="pill">Data Lineage</span>
+          </div>
+        </div>
+        <div class="skill-group glass reveal">
+          <h4>Enterprise Analytics &amp; Governance</h4>
+          <div class="pill-row">
+            <span class="pill">Semantic Models</span><span class="pill">DAX Optimization</span><span class="pill">Row-Level Security</span><span class="pill">Analytics Governance</span><span class="pill">Requirements Discovery</span><span class="pill">Executive Decision Support</span>
+          </div>
+        </div>
+        <div class="skill-group glass reveal">
+          <h4>Engineering &amp; Automation</h4>
+          <div class="pill-row">
+            <span class="pill">Azure AD · MSAL</span><span class="pill">REST APIs</span><span class="pill">Make.com</span><span class="pill">Automation Scripting</span><span class="pill">API Authentication</span><span class="pill">HTML · CSS · JS</span>
+          </div>
+        </div>
+        <div class="skill-group glass reveal">
+          <h4>AI Systems Delivery</h4>
+          <div class="pill-row">
+            <span class="pill">Text-to-SQL</span><span class="pill">Prompt Design</span><span class="pill">AI Workflow Design</span><span class="pill">Human-in-the-Loop Review</span><span class="pill">Output Validation</span><span class="pill">Responsible AI</span>
+          </div>
+        </div>
+        <div class="skill-group glass reveal">
+          <h4>Delivery &amp; Leadership</h4>
+          <div class="pill-row">
+            <span class="pill">Agile / Scrum</span><span class="pill">Jira</span><span class="pill">MS Project</span><span class="pill">Stakeholder &amp; C-Suite Reporting</span><span class="pill">Team Leadership</span><span class="pill">Mentoring</span><span class="pill">Process Optimization</span><span class="pill">Project Documentation</span>
+          </div>
+        </div>
+        <div class="skill-group glass reveal">
+          <h4>Languages</h4>
+          <div class="pill-row">
+            <span class="pill">English (C1)</span><span class="pill">Hindi (C1)</span><span class="pill">Bengali (C2 · Bilingual)</span>
           </div>
         </div>
       </div>
@@ -598,14 +754,14 @@
       <div class="section-head reveal">
         <div class="eyebrow">Get in Touch</div>
         <h2 class="section-title">Let's build something.</h2>
-        <p class="section-sub">Open to senior analyst, BI, and AI-systems roles — or just a good conversation about data.</p>
+        <p class="section-sub">Open to senior analyst, BI lead/manager, and AI-systems roles — or just a good conversation about data. English, Hindi, and Bengali all work for that conversation.</p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-card glass reveal">
           <div class="contact-row">
             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 6 10-6"></path></svg></div>
-            <div><div class="contact-label">Email</div><div class="contact-value">pallab.mukherjee1987@gmail.com</div></div>
+            <div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:pallab.mukherjee1987@gmail.com">pallab.mukherjee1987@gmail.com</a></div></div>
           </div>
           <div class="contact-row">
             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"></path></svg></div>
@@ -617,7 +773,7 @@
           </div>
           <div class="contact-row">
             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div>
-            <div><div class="contact-label">LinkedIn</div><div class="contact-value">linkedin.com/in/pallab-mukherjee</div></div>
+            <div><div class="contact-label">LinkedIn</div><div class="contact-value"><a href="https://www.linkedin.com/in/pallab-mukherjee" target="_blank" rel="noopener">linkedin.com/in/pallab-mukherjee ↗</a></div></div>
           </div>
         </div>
 
@@ -642,12 +798,26 @@
   </section>
 </main>
 
+<!-- Case study detail: deliberately anonymised to protect enterprise client data. -->
+<dialog class="case-dialog" id="caseDialog" aria-labelledby="caseTitle">
+  <article class="case-modal glass">
+    <button class="case-close" id="caseClose" type="button" aria-label="Close case study">×</button>
+    <div class="case-kicker" id="caseKicker">Selected work</div>
+    <h2 id="caseTitle"></h2>
+    <p class="case-lead" id="caseLead"></p>
+    <div class="case-facts" id="caseFacts"></div>
+    <h3 style="font-size:15px; margin:0 0 10px;">What I led</h3>
+    <ul class="case-list" id="caseList"></ul>
+  </article>
+</dialog>
+
 <!-- Dock -->
 <nav class="dock-wrap glass" id="dock" aria-label="Section navigation">
   <a href="#home" class="dock-item" data-section="home"><span class="dock-tooltip">Home</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg><span class="dot"></span></a>
   <a href="#about" class="dock-item" data-section="about"><span class="dock-tooltip">About</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg><span class="dot"></span></a>
   <a href="#experience" class="dock-item" data-section="experience"><span class="dock-tooltip">Experience</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span class="dot"></span></a>
   <a href="#projects" class="dock-item" data-section="projects"><span class="dock-tooltip">Projects</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"></path><path d="M3 12l9 5 9-5M3 17l9 5 9-5"></path></svg><span class="dot"></span></a>
+  <a href="#credentials" class="dock-item" data-section="credentials"><span class="dock-tooltip">Credentials</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1z"></path><path d="M5 3l1 1M19 3l-1 1"></path></svg><span class="dot"></span></a>
   <a href="#skills" class="dock-item" data-section="skills"><span class="dock-tooltip">Skills</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1z"></path></svg><span class="dot"></span></a>
   <a href="#contact" class="dock-item" data-section="contact"><span class="dock-tooltip">Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 6 10-6"></path></svg><span class="dot"></span></a>
 </nav>
@@ -741,6 +911,54 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.style.setProperty('--my', (e.clientY - r.top) + 'px');
   });
 });
+
+// ---------- Recruiter-friendly case studies ----------
+const caseStudies = {
+  sql: {
+    kicker: 'AI-enabled analytics · enterprise workflow',
+    title: 'Multi-Agent SQL Assistant',
+    lead: 'A chat-first analytics workflow designed to reduce dependency on manual SQL reporting while keeping the business question and the decision at the centre.',
+    facts: [['Business outcome', '3.2 FTEs of reporting capacity released'], ['My role', 'Solution design, delivery and stakeholder enablement'], ['Core stack', 'Multi-agent workflow · SQL Server · prompt design']],
+    points: ['Mapped high-volume ad-hoc reporting requests into a plain-language question flow.', 'Designed the workflow to plan and execute SQL behind the scenes, replacing repetitive manual query work.', 'Partnered with business users to focus the assistant on useful answers rather than technical query syntax.']
+  },
+  dashboard: {
+    kicker: 'BI delivery automation · reusable design',
+    title: 'Power BI Dashboard Delivery Accelerator',
+    lead: 'A specification-led approach to make recurring BI delivery faster, more repeatable, and easier to govern across stakeholder requests.',
+    facts: [['Business outcome', 'Reduced repeatable dashboard setup work'], ['My role', 'Automation workflow and BI design'], ['Core stack', 'Python · Power BI APIs · Azure AD / MSAL']],
+    points: ['Translated repeatable dashboard requirements into structured specifications.', 'Applied templates and authenticated automation to streamline report lifecycle steps.', 'Kept the design focused on consistent reporting experience and maintainable delivery patterns.']
+  },
+  revenue: {
+    kicker: 'Finance analytics · operational performance',
+    title: 'Invoice Reconciliation Performance Engine',
+    lead: 'A BI and SQL improvement initiative for a large invoicing workflow where slow data access delayed reconciliation and decision-making.',
+    facts: [['Business outcome', 'Faster reconciliation turnaround'], ['My role', 'BI reporting, SQL tuning and process automation'], ['Core stack', 'SQL Server · ETL · data virtualization']],
+    points: ['Investigated slow-running query patterns that created reporting bottlenecks.', 'Optimized SQL and automated fragile spreadsheet-based reporting steps.', 'Delivered reporting and documentation that made reconciliation insights more reliable for finance and operations teams.']
+  }
+};
+const caseDialog = document.getElementById('caseDialog');
+const caseTitle = document.getElementById('caseTitle');
+const caseKicker = document.getElementById('caseKicker');
+const caseLead = document.getElementById('caseLead');
+const caseFacts = document.getElementById('caseFacts');
+const caseList = document.getElementById('caseList');
+document.querySelectorAll('[data-case]').forEach(button => button.addEventListener('click', (event) => {
+  event.stopPropagation();
+  const study = caseStudies[button.dataset.case];
+  caseKicker.textContent = study.kicker;
+  caseTitle.textContent = study.title;
+  caseLead.textContent = study.lead;
+  caseFacts.replaceChildren(...study.facts.map(([label, value]) => {
+    const fact = document.createElement('div'); fact.className = 'case-fact';
+    const heading = document.createElement('b'); heading.textContent = label;
+    const detail = document.createElement('span'); detail.textContent = value;
+    fact.append(heading, detail); return fact;
+  }));
+  caseList.replaceChildren(...study.points.map(point => { const item = document.createElement('li'); item.textContent = point; return item; }));
+  caseDialog.showModal();
+}));
+document.getElementById('caseClose').addEventListener('click', () => caseDialog.close());
+caseDialog.addEventListener('click', event => { if (event.target === caseDialog) caseDialog.close(); });
 
 // ---------- Contact form -> mailto ----------
 document.getElementById('contactForm').addEventListener('submit', (e) => {
