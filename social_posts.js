@@ -62,22 +62,22 @@ window.SOCIAL_PROFILES = {
     .project:hover,.skill:hover{transform:translateY(-4px)}
     @media(max-width:560px){.top .btn.primary{padding-inline:14px}.hero-actions{margin-top:24px}.hero-actions .primary{order:-1}}
     @media print{.mesh,.grain,.top,.dock,.hero-actions,.contact form{display:none!important}.glass{box-shadow:none;border:1px solid #ccc;background:#fff}.section{padding:30px 0}.hero{min-height:auto;padding:40px 20px}.wrap{width:100%}}
-    .social-connect{padding:34px;text-align:center}
-    .social-connect h2{margin:0 0 10px;font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.03em}
-    .social-connect p{max-width:650px;margin:0 auto 24px;color:var(--muted);line-height:1.7}
-    .social-connect-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-    .social-connect-actions .btn{min-width:180px}
-    .deep-case{padding:34px;margin-bottom:0}
-    .deep-case h2{margin:0 0 10px;font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.03em}
-    .deep-case p{max-width:760px;margin:0 auto 22px;color:var(--muted);line-height:1.7}
-    .deep-case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:20px 0}
-    .deep-case-card{padding:16px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.24)}
-    .deep-case-card b{display:block;font-size:12px;margin-bottom:6px}.deep-case-card span{color:var(--muted);font-size:11px;line-height:1.5}
+
+    /* Recruiter case-study bridge: intentionally uses the homepage design tokens. */
+    .deep-case{padding:34px;text-align:center}
+    .deep-case .eyebrow{margin-bottom:10px}
+    .deep-case h2{margin:0 0 12px;font-size:clamp(30px,4.2vw,46px);line-height:1.06;letter-spacing:-.035em}
+    .deep-case p{max-width:760px;margin:0 auto 24px;color:var(--muted);line-height:1.75;font-size:13px}
+    .deep-case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left;margin:22px 0}
+    .deep-case-card{min-height:148px;padding:18px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.24);display:flex;flex-direction:column;justify-content:space-between}
+    .deep-case-card b{display:block;font-size:12px;line-height:1.4;margin-bottom:10px}
+    .deep-case-card span{color:var(--muted);font-size:11px;line-height:1.6}
     .deep-case-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-    .deep-case-hero-link{margin:18px auto 0;display:inline-flex!important}
-    .deep-case-nav{color:var(--a)!important;font-weight:800!important}
-    @media(max-width:720px){.deep-case-grid{grid-template-columns:1fr}.deep-case{padding:25px 20px}}
-    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn,.deep-case-actions .btn{width:100%}.deep-case-hero-link{width:100%}}
+    .deep-case-actions .btn{min-width:230px}
+    .deep-case-nav{color:var(--a)!important;font-weight:800!important;background:rgba(61,90,254,.08)!important}
+    .deep-case-nav:hover{background:rgba(61,90,254,.14)!important}
+    @media(max-width:980px){.deep-case-grid{grid-template-columns:1fr}.deep-case-card{min-height:0}}
+    @media(max-width:560px){.deep-case{padding:26px 20px}.deep-case-actions .btn{width:100%;min-width:0}.deep-case-card{padding:16px}}
   `;
   document.head.appendChild(style);
 
@@ -86,8 +86,8 @@ window.SOCIAL_PROFILES = {
 
   const contact = document.getElementById('contact');
   const hero = document.getElementById('home');
-  const work = document.getElementById('work');
 
+  /* Keep the case-study destination visible at three natural decision points. */
   if (hero && !document.getElementById('deep-case-hero-link')) {
     const cta = document.createElement('a');
     cta.id = 'deep-case-hero-link';
@@ -105,7 +105,7 @@ window.SOCIAL_PROFILES = {
       a.id = 'deep-case-nav-link';
       a.className = 'deep-case-nav';
       a.href = 'case-studies.html';
-      a.textContent = 'Case Studies ↗';
+      a.textContent = 'Cases ↗';
       a.setAttribute('aria-label','Open deep visual case studies');
       nav.appendChild(a);
     }
@@ -141,7 +141,7 @@ window.SOCIAL_PROFILES = {
           <div class="deep-case-actions"><a class="btn primary" href="case-studies.html">Explore the deep case studies →</a></div>
         </div>
       </div>`;
-    if (work) work.parentNode.insertBefore(section, work); else contact.parentNode.insertBefore(section, contact);
+    contact.parentNode.insertBefore(section, contact);
   }
 
   if (contact && !document.getElementById('connect')) {
