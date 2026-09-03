@@ -1,4 +1,4 @@
-/* Recruiter-facing profile metadata and social connection section. */
+/* Recruiter-facing profile metadata, social connection section and deep case-study entry point. */
 window.SOCIAL_POSTS = [];
 window.SOCIAL_PROFILES = {
   linkedin: 'https://www.linkedin.com/in/pallab-mukherjee',
@@ -67,15 +67,43 @@ window.SOCIAL_PROFILES = {
     .social-connect p{max-width:650px;margin:0 auto 24px;color:var(--muted);line-height:1.7}
     .social-connect-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
     .social-connect-actions .btn{min-width:180px}
-    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn{width:100%}}
+    .deep-case{padding:34px;margin-bottom:0}
+    .deep-case h2{margin:0 0 10px;font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.03em}
+    .deep-case p{max-width:760px;margin:0 auto 22px;color:var(--muted);line-height:1.7}
+    .deep-case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:20px 0}
+    .deep-case-card{padding:16px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.24)}
+    .deep-case-card b{display:block;font-size:12px;margin-bottom:6px}.deep-case-card span{color:var(--muted);font-size:11px;line-height:1.5}
+    .deep-case-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    @media(max-width:720px){.deep-case-grid{grid-template-columns:1fr}.deep-case{padding:25px 20px}}
+    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn,.deep-case-actions .btn{width:100%}}
   `;
   document.head.appendChild(style);
 
-  /* Replace the old social-post area with a simple, intentional connection section. */
   document.getElementById('thinking')?.remove();
   document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
 
   const contact = document.getElementById('contact');
+  if (contact && !document.getElementById('deep-case-studies')) {
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'deep-case-studies';
+    section.innerHTML = `
+      <div class="wrap">
+        <div class="deep-case glass reveal">
+          <div class="eyebrow">SEE THE OPERATING DEPTH</div>
+          <h2>Three problems. Three decision systems.</h2>
+          <p>Go beneath the portfolio summary into architecture, workflow controls, KPI flows and sanitized dashboard views—designed to make the Manager / Senior Manager trajectory visible.</p>
+          <div class="deep-case-grid">
+            <div class="deep-case-card"><b>01 · Multi-Agent SQL Assistant</b><span>Applied AI architecture · governed natural-language querying · 3.2 FTE released</span></div>
+            <div class="deep-case-card"><b>02 · Invoicing & Reconciliation</b><span>Enterprise controls · exception management · sanitized control-tower dashboard</span></div>
+            <div class="deep-case-card"><b>03 · Commercial Decision Support</b><span>KPI-to-action loop · executive decision surface · documented +15% quarterly uplift</span></div>
+          </div>
+          <div class="deep-case-actions"><a class="btn primary" href="case-studies.html">Explore the deep case studies →</a></div>
+        </div>
+      </div>`;
+    contact.parentNode.insertBefore(section, contact);
+  }
+
   if (contact && !document.getElementById('connect')) {
     const section = document.createElement('section');
     section.className = 'section';
@@ -109,12 +137,8 @@ window.SOCIAL_PROFILES = {
     const submit = form.querySelector('button');
     if (submit) { submit.type='submit'; submit.setAttribute('aria-label','Open email client to send portfolio message'); }
   }
-
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.setAttribute('rel','noopener noreferrer'));
   document.querySelectorAll('.reveal').forEach(el=>{
-    if (!el.classList.contains('show') && 'IntersectionObserver' in window) {
-      /* The main page observer will handle existing elements; this fallback keeps the injected card visible. */
-      requestAnimationFrame(()=>el.classList.add('show'));
-    }
+    if (!el.classList.contains('show') && 'IntersectionObserver' in window) requestAnimationFrame(()=>el.classList.add('show'));
   });
 })();
