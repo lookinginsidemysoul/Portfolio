@@ -1,4 +1,4 @@
-/* Social feed removed from the portfolio UI. Keep this file as the safe home for profile metadata and recruiter-facing polish. */
+/* Recruiter-facing profile metadata and social connection section. */
 window.SOCIAL_POSTS = [];
 window.SOCIAL_PROFILES = {
   linkedin: 'https://www.linkedin.com/in/pallab-mukherjee',
@@ -62,13 +62,38 @@ window.SOCIAL_PROFILES = {
     .project:hover,.skill:hover{transform:translateY(-4px)}
     @media(max-width:560px){.top .btn.primary{padding-inline:14px}.hero-actions{margin-top:24px}.hero-actions .primary{order:-1}}
     @media print{.mesh,.grain,.top,.dock,.hero-actions,.contact form{display:none!important}.glass{box-shadow:none;border:1px solid #ccc;background:#fff}.section{padding:30px 0}.hero{min-height:auto;padding:40px 20px}.wrap{width:100%}}
-    #thinking{display:none!important}
+    .social-connect{padding:34px;text-align:center}
+    .social-connect h2{margin:0 0 10px;font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.03em}
+    .social-connect p{max-width:650px;margin:0 auto 24px;color:var(--muted);line-height:1.7}
+    .social-connect-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .social-connect-actions .btn{min-width:180px}
+    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn{width:100%}}
   `;
   document.head.appendChild(style);
 
-  /* Remove the social/thinking section and any navigation link to it. */
+  /* Replace the old social-post area with a simple, intentional connection section. */
   document.getElementById('thinking')?.remove();
   document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
+
+  const contact = document.getElementById('contact');
+  if (contact && !document.getElementById('connect')) {
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'connect';
+    section.innerHTML = `
+      <div class="wrap">
+        <div class="social-connect glass reveal">
+          <div class="eyebrow">CONNECT WITH ME</div>
+          <h2>Let’s stay connected.</h2>
+          <p>Follow my professional journey, ideas and updates across LinkedIn and Facebook.</p>
+          <div class="social-connect-actions">
+            <a class="btn primary" href="${window.SOCIAL_PROFILES.linkedin}" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+            <a class="btn" href="${window.SOCIAL_PROFILES.facebook}" target="_blank" rel="noopener noreferrer">Connect on Facebook ↗</a>
+          </div>
+        </div>
+      </div>`;
+    contact.parentNode.insertBefore(section, contact);
+  }
 
   const heroCta = document.querySelector('.hero-actions .primary');
   if (heroCta && heroCta.getAttribute('href') === '#contact') heroCta.textContent = 'Explore my leadership journey → Let’s connect';
@@ -86,4 +111,10 @@ window.SOCIAL_PROFILES = {
   }
 
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.setAttribute('rel','noopener noreferrer'));
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if (!el.classList.contains('show') && 'IntersectionObserver' in window) {
+      /* The main page observer will handle existing elements; this fallback keeps the injected card visible. */
+      requestAnimationFrame(()=>el.classList.add('show'));
+    }
+  });
 })();
