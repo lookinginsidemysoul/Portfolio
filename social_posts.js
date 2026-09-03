@@ -74,8 +74,10 @@ window.SOCIAL_PROFILES = {
     .deep-case-card{padding:16px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.24)}
     .deep-case-card b{display:block;font-size:12px;margin-bottom:6px}.deep-case-card span{color:var(--muted);font-size:11px;line-height:1.5}
     .deep-case-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .deep-case-hero-link{margin:18px auto 0;display:inline-flex!important}
+    .deep-case-nav{color:var(--a)!important;font-weight:800!important}
     @media(max-width:720px){.deep-case-grid{grid-template-columns:1fr}.deep-case{padding:25px 20px}}
-    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn,.deep-case-actions .btn{width:100%}}
+    @media(max-width:560px){.social-connect{padding:24px 20px}.social-connect-actions .btn,.deep-case-actions .btn{width:100%}.deep-case-hero-link{width:100%}}
   `;
   document.head.appendChild(style);
 
@@ -83,6 +85,44 @@ window.SOCIAL_PROFILES = {
   document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
 
   const contact = document.getElementById('contact');
+  const hero = document.getElementById('home');
+  const work = document.getElementById('work');
+
+  if (hero && !document.getElementById('deep-case-hero-link')) {
+    const cta = document.createElement('a');
+    cta.id = 'deep-case-hero-link';
+    cta.className = 'btn primary deep-case-hero-link';
+    cta.href = 'case-studies.html';
+    cta.textContent = 'View 3 deep case studies →';
+    const actions = hero.querySelector('.hero-actions');
+    if (actions) actions.appendChild(cta);
+  }
+
+  if (!document.getElementById('deep-case-nav-link')) {
+    const nav = document.querySelector('.navlinks');
+    if (nav) {
+      const a = document.createElement('a');
+      a.id = 'deep-case-nav-link';
+      a.className = 'deep-case-nav';
+      a.href = 'case-studies.html';
+      a.textContent = 'Case Studies ↗';
+      a.setAttribute('aria-label','Open deep visual case studies');
+      nav.appendChild(a);
+    }
+  }
+
+  if (!document.getElementById('deep-case-dock-link')) {
+    const dock = document.querySelector('.dock');
+    if (dock) {
+      const a = document.createElement('a');
+      a.id = 'deep-case-dock-link';
+      a.href = 'case-studies.html';
+      a.textContent = 'Cases';
+      a.setAttribute('aria-label','Open deep visual case studies');
+      dock.appendChild(a);
+    }
+  }
+
   if (contact && !document.getElementById('deep-case-studies')) {
     const section = document.createElement('section');
     section.className = 'section';
@@ -101,7 +141,7 @@ window.SOCIAL_PROFILES = {
           <div class="deep-case-actions"><a class="btn primary" href="case-studies.html">Explore the deep case studies →</a></div>
         </div>
       </div>`;
-    contact.parentNode.insertBefore(section, contact);
+    if (work) work.parentNode.insertBefore(section, work); else contact.parentNode.insertBefore(section, contact);
   }
 
   if (contact && !document.getElementById('connect')) {
