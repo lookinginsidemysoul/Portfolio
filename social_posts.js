@@ -85,6 +85,15 @@ window.SOCIAL_PROFILES = {
   document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
   document.querySelectorAll('.verify').forEach(el=>el.remove());
 
+  // Remove the specific verification write-up even if its markup/class changes.
+  document.querySelectorAll('body *').forEach(el=>{
+    const text = (el.textContent || '').trim();
+    if (text.includes('I have deliberately not added unverified NGO or volunteer claims.')) {
+      const target = el.closest('.verify') || el;
+      target.remove();
+    }
+  });
+
   const contact = document.getElementById('contact');
   const hero = document.getElementById('home');
 
