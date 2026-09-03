@@ -83,6 +83,7 @@ window.SOCIAL_PROFILES = {
 
   document.getElementById('thinking')?.remove();
   document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
+  document.querySelectorAll('.verify').forEach(el=>el.remove());
 
   const contact = document.getElementById('contact');
   const hero = document.getElementById('home');
