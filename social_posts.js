@@ -1,11 +1,10 @@
-/* Public-safe curated social-post feed. Never add API tokens, cookies, private URLs, or non-public content. */
+/* Social feed removed from the portfolio UI. Keep this file as the safe home for profile metadata and recruiter-facing polish. */
 window.SOCIAL_POSTS = [];
 window.SOCIAL_PROFILES = {
   linkedin: 'https://www.linkedin.com/in/pallab-mukherjee',
   facebook: 'https://www.facebook.com/share/1EfdKgJwuk/?mibextid=wwXIfr'
 };
 
-/* Final recruiter-facing polish layer. Kept separate so the core visual identity stays stable. */
 (function(){
   const profile = 'https://lookinginsidemysoul.github.io/Portfolio/';
   const addMeta = (name, content, property) => {
@@ -59,13 +58,17 @@ window.SOCIAL_PROFILES = {
     :focus-visible{outline:3px solid var(--a);outline-offset:3px}
     .btn,.icon,.dock a{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
     .btn:hover{transform:translateY(-2px)}
-    .project,.skill,.stat,.post,.card{transition:transform .25s ease,box-shadow .25s ease}
-    .project:hover,.skill:hover,.post:hover{transform:translateY(-4px)}
-    .photo img{display:block;loading:lazy}
+    .project,.skill,.stat,.card{transition:transform .25s ease,box-shadow .25s ease}
+    .project:hover,.skill:hover{transform:translateY(-4px)}
     @media(max-width:560px){.top .btn.primary{padding-inline:14px}.hero-actions{margin-top:24px}.hero-actions .primary{order:-1}}
     @media print{.mesh,.grain,.top,.dock,.hero-actions,.contact form{display:none!important}.glass{box-shadow:none;border:1px solid #ccc;background:#fff}.section{padding:30px 0}.hero{min-height:auto;padding:40px 20px}.wrap{width:100%}}
+    #thinking{display:none!important}
   `;
   document.head.appendChild(style);
+
+  /* Remove the social/thinking section and any navigation link to it. */
+  document.getElementById('thinking')?.remove();
+  document.querySelectorAll('a[href="#thinking"]').forEach(a=>a.remove());
 
   const heroCta = document.querySelector('.hero-actions .primary');
   if (heroCta && heroCta.getAttribute('href') === '#contact') heroCta.textContent = 'Explore my leadership journey → Let’s connect';
@@ -83,10 +86,4 @@ window.SOCIAL_PROFILES = {
   }
 
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.setAttribute('rel','noopener noreferrer'));
-
-  /* Curated posts remain opt-in: only verified URLs supplied in SOCIAL_POSTS are rendered. */
-  const posts = Array.isArray(window.SOCIAL_POSTS) ? window.SOCIAL_POSTS : [];
-  posts.forEach(p=>{
-    if (!p || !/^https:\/\/(www\.)?(linkedin\.com|facebook\.com)\//i.test(String(p.url||''))) return;
-  });
 })();
